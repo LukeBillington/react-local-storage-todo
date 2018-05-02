@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { todosUpdate, todosDelete } from '../actions/todos';
 import ListItemCheck from './ListItemCheck';
 import ListItemText from './ListItemText';
+import ListItemDelete from './ListItemDelete';
 
 class ListItem extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class ListItem extends Component {
       <li>
         <ListItemCheck checked={todo.checked} update={this.handleUpdateCheck} />
         <ListItemText text={todo.text} update={this.handleUpdateText} />
-        <button onClick={this.handleDelete}>Delete</button>
+        <ListItemDelete update={this.handleDelete} />
       </li>
     );
   }

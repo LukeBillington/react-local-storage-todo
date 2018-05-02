@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ListItemCheck = (props) => {
-  const { checked } = props;
+  const { checked, update } = props;
   return (
-    <input type="checkbox" checked={checked} onChange={props.update} />
+    <input type="checkbox" checked={checked} onChange={update} />
   );
 };
 

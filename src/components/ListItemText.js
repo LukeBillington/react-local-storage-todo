@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ListItemText = (props) => {
-  const { text } = props;
+  const { text, update } = props;
   return (
-    <input type="text" value={text} onChange={props.update} />
+    <input type="text" value={text} onChange={update} />
   );
 };
 
