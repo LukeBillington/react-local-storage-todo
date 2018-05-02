@@ -10,11 +10,19 @@ const initialState = {
   todos: [],
 };
 
+function createTodo(array) {
+  const save = [...array, { text: '', checked: false }];
+  localStorage.setItem('todos', JSON.stringify(save));
+  return save;
+}
+
 function updateTodo(array, action) {
-  return array.map((item, index) => {
+  const save = array.map((item, index) => {
     if (index.toString() !== action.index) return item;
     return action.todo;
   });
+  localStorage.setItem('todos', JSON.stringify(save));
+  return save;
 }
 
 function todos(state = initialState, action) {
@@ -24,7 +32,7 @@ function todos(state = initialState, action) {
     case TODOS_LOADED:
       return Object.assign({}, state, { todos: action.todos });
     case TODOS_CREATE:
-      return Object.assign({}, state, { todos: [...state.todos, { text: '', checked: false }] });
+      return Object.assign({}, state, { todos: createTodo(state.todos) });
     case TODOS_UPDATE:
       return Object.assign({}, state, { todos: updateTodo(state.todos, action) });
     default:

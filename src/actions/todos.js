@@ -33,14 +33,13 @@ export function todosUpdate(index, todo) {
 
 export function todosFetch() {
   return (dispatch) => {
-    const todos = [
-      { text: 'One', checked: false },
-      { text: 'Two', checked: true },
-      { text: 'Three', checked: false },
-      { text: 'Four', checked: true },
-    ];
     dispatch(todosLoading(true));
-    dispatch(todosLoaded(todos));
+    const todos = localStorage.getItem('todos');
+    if (todos === null) {
+      dispatch(todosLoaded([]));
+    } else {
+      dispatch(todosLoaded(JSON.parse(todos)));
+    }
     dispatch(todosLoading(false));
   };
 }
