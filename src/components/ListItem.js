@@ -35,7 +35,10 @@ class ListItem extends Component {
 
 ListItem.propTypes = {
   index: PropTypes.string.isRequired,
-  todo: PropTypes.shape({}).isRequired,
+  todo: PropTypes.shape({
+    text: PropTypes.string,
+    checked: PropTypes.bool,
+  }).isRequired,
   todosUpdate: PropTypes.func.isRequired,
 };
 
