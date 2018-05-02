@@ -2,6 +2,7 @@ export const TODOS_LOADING = 'TODOS_LOADING';
 export const TODOS_LOADED = 'TODOS_LOADED';
 export const TODOS_CREATE = 'TODOS_CREATE';
 export const TODOS_UPDATE = 'TODOS_UPDATE';
+export const TODOS_DELETE = 'TODOS_DELETE';
 
 export function todosLoading(loading) {
   return {
@@ -28,6 +29,13 @@ export function todosUpdate(index, todo) {
     type: TODOS_UPDATE,
     index,
     todo,
+  };
+}
+
+export function todosDelete(index) {
+  return {
+    type: TODOS_DELETE,
+    index,
   };
 }
 

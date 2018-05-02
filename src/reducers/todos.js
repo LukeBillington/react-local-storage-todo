@@ -3,6 +3,7 @@ import {
   TODOS_LOADED,
   TODOS_CREATE,
   TODOS_UPDATE,
+  TODOS_DELETE,
 } from '../actions/todos';
 
 const initialState = {
@@ -25,6 +26,12 @@ function updateTodo(array, action) {
   return save;
 }
 
+function deleteTodo(array, action) {
+  const save = array.filter((item, index) => index.toString() !== action.index);
+  localStorage.setItem('todos', JSON.stringify(save));
+  return save;
+}
+
 function todos(state = initialState, action) {
   switch (action.type) {
     case TODOS_LOADING:
@@ -35,6 +42,8 @@ function todos(state = initialState, action) {
       return Object.assign({}, state, { todos: createTodo(state.todos) });
     case TODOS_UPDATE:
       return Object.assign({}, state, { todos: updateTodo(state.todos, action) });
+    case TODOS_DELETE:
+      return Object.assign({}, state, { todos: deleteTodo(state.todos, action) });
     default:
       return state;
   }

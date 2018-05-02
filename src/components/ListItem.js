@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { todosUpdate } from '../actions/todos';
+import { todosUpdate, todosDelete } from '../actions/todos';
 import ListItemCheck from './ListItemCheck';
 import ListItemText from './ListItemText';
 
@@ -10,6 +10,7 @@ class ListItem extends Component {
     super(props);
     this.handleUpdateText = this.handleUpdateText.bind(this);
     this.handleUpdateCheck = this.handleUpdateCheck.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleUpdateText(event) {
@@ -22,12 +23,18 @@ class ListItem extends Component {
     this.props.todosUpdate(index, Object.assign({}, todo, { checked: event.target.checked }));
   }
 
+  handleDelete() {
+    const { index } = this.props;
+    this.props.todosDelete(index);
+  }
+
   render() {
     const { todo } = this.props;
     return (
       <li>
         <ListItemCheck checked={todo.checked} update={this.handleUpdateCheck} />
         <ListItemText text={todo.text} update={this.handleUpdateText} />
+        <button onClick={this.handleDelete}>Delete</button>
       </li>
     );
   }
@@ -40,10 +47,12 @@ ListItem.propTypes = {
     checked: PropTypes.bool,
   }).isRequired,
   todosUpdate: PropTypes.func.isRequired,
+  todosDelete: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   todosUpdate: (index, todo) => dispatch(todosUpdate(index, todo)),
+  todosDelete: index => dispatch(todosDelete(index)),
 });
 
 export default connect(null, mapDispatchToProps)(ListItem);
