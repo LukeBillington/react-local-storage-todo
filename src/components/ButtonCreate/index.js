@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { todosCreate } from '../actions/todos';
+import { todosCreate } from '../../actions/todos';
+import './style.css';
 
 const ButtonCreate = props => (
-  <button onClick={() => props.todosCreate()}>Add item</button>
+  <button className="ButtonCreate" onClick={() => props.todosCreate()}>Add item</button>
 );
 
 ButtonCreate.propTypes = {

@@ -1,0 +1,7 @@
+.ListItemDelete
+{
+    cursor: pointer;
+    color: rgba(0,0,0,.25);
+    border: none;
+    background: none;
+}

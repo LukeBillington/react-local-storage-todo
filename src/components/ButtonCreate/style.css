@@ -1,0 +1,13 @@
+.ButtonCreate
+{
+    font-size: 1em;
+    font-weight: 500;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    color: #434343;
+    border: none;
+    border-radius: 1rem;
+    background-color: rgba(248,186,0,.5);
+}

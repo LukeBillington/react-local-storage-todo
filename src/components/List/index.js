@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { todosFetch } from '../actions/todos';
-import ButtonCreate from './ButtonCreate';
-import ListItem from './ListItem';
+import { todosFetch } from '../../actions/todos';
+import ButtonCreate from '../ButtonCreate/';
+import ListItem from '../ListItem/';
+import './style.css';
 
 class List extends Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class List extends Component {
   render() {
     const { todos } = this.props;
     return (
-      <Fragment>
+      <section className="List">
         <ButtonCreate />
         <ul>
           {
@@ -27,7 +28,7 @@ class List extends Component {
               })
           }
         </ul>
-      </Fragment>
+      </section>
     );
   }
 }

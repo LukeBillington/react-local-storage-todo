@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { todosUpdate, todosDelete } from '../actions/todos';
-import ListItemCheck from './ListItemCheck';
-import ListItemText from './ListItemText';
-import ListItemDelete from './ListItemDelete';
+import { todosUpdate, todosDelete } from '../../actions/todos';
+import ListItemCheck from '../ListItemCheck/';
+import ListItemText from '../ListItemText/';
+import ListItemDelete from '../ListItemDelete/';
+import './style.css';
 
 class ListItem extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class ListItem extends Component {
   render() {
     const { todo } = this.props;
     return (
-      <li>
+      <li className="ListItem">
         <ListItemCheck checked={todo.checked} update={this.handleUpdateCheck} />
         <ListItemText text={todo.text} update={this.handleUpdateText} />
         <ListItemDelete update={this.handleDelete} />

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const ListItemDelete = (props) => {
   const { update } = props;
   return (
-    <button onClick={update}>Delete</button>
+    <button className="ListItemDelete" onClick={update}>Delete</button>
   );
 };
 

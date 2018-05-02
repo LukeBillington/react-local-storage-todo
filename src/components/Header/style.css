@@ -1,0 +1,17 @@
+.Header
+{
+    padding: 2rem;
+    color: #434343;
+}
+
+.Header h1
+{
+    float: left;
+    margin: 0 1rem 0 0;
+}
+
+.Header p
+{
+    font-weight: 200;
+    margin: 0;
+}

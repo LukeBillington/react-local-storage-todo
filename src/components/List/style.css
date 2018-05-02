@@ -1,0 +1,15 @@
+.List
+{
+    width: 35rem;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: 2rem solid #f8ba00;
+    background-color: #fae232;
+}
+
+.List ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
