@@ -18,7 +18,7 @@ class List extends Component {
         <ul>
           {
             Object
-              .keys(todos)
+              .keys(todos.sort((a, b) => a.checked - b.checked))
               .map((key) => {
                 const todo = todos[key];
                 return (

@@ -23,10 +23,9 @@ class ListItem extends Component {
   }
 
   render() {
-    const { index, todo } = this.props;
+    const { todo } = this.props;
     return (
       <li>
-        { index }
         <ListItemCheck checked={todo.checked} update={this.handleUpdateCheck} />
         <ListItemText text={todo.text} update={this.handleUpdateText} />
       </li>
