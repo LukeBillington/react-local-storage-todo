@@ -1,22 +1,17 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { todosFetch } from '../actions/todos';
 import ButtonCreate from './ButtonCreate';
 import ListItem from './ListItem';
 
-export default class List extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [
-        { text: 'One', checked: false },
-        { text: 'Two', checked: true },
-        { text: 'Three', checked: false },
-        { text: 'Four', checked: true },
-      ],
-    };
+class List extends Component {
+  componentDidMount() {
+    this.props.todosFetch();
   }
 
   render() {
-    const { todos } = this.state;
+    const { todos } = this.props;
     return (
       <Fragment>
         <ButtonCreate />
@@ -36,3 +31,19 @@ export default class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  todosFetch: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+const mapStateToProps = state => ({
+  loading: state.todos.loading,
+  todos: state.todos.todos,
+});
+
+const mapDispatchToProps = dispatch => ({
+  todosFetch: () => dispatch(todosFetch()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
