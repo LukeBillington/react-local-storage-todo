@@ -2,10 +2,13 @@
 {
     font-size: 1em;
     font-weight: 500;
+
     width: calc(100% - 2rem);
     margin: 1rem;
     padding: 1rem;
+
     cursor: pointer;
+
     color: #434343;
     border: none;
     border-radius: 1rem;

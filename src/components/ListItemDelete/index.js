@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 const ListItemDelete = (props) => {
-  const { update } = props;
+  const { visible, update } = props;
   return (
-    <button className="ListItemDelete" onClick={update}>Delete</button>
+    <button className={`ListItemDelete${visible ? '' : ' hidden'}`} onClick={update}>Delete</button>
   );
 };
 
 ListItemDelete.propTypes = {
+  visible: PropTypes.bool.isRequired,
   update: PropTypes.func.isRequired,
 };
 

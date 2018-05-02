@@ -10,6 +10,7 @@ import './style.css';
 class ListItem extends Component {
   constructor(props) {
     super(props);
+    this.state = { focused: false };
     this.handleUpdateText = this.handleUpdateText.bind(this);
     this.handleUpdateCheck = this.handleUpdateCheck.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -32,11 +33,18 @@ class ListItem extends Component {
 
   render() {
     const { todo } = this.props;
+    const { focused } = this.state;
     return (
-      <li className="ListItem">
+      <li
+        className="ListItem"
+        onMouseOver={() => this.setState({ focused: true })}
+        onFocus={() => this.setState({ focused: true })}
+        onMouseOut={() => this.setState({ focused: false })}
+        onBlur={() => this.setState({ focused: false })}
+      >
         <ListItemCheck checked={todo.checked} update={this.handleUpdateCheck} />
         <ListItemText text={todo.text} update={this.handleUpdateText} />
-        <ListItemDelete update={this.handleDelete} />
+        <ListItemDelete visible={focused} update={this.handleDelete} />
       </li>
     );
   }

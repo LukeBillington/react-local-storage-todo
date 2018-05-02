@@ -1,8 +1,13 @@
 .ListItemText
 {
     font-size: 1em;
+
+    z-index: 1;
+
     flex: 1;
+
     padding: .5rem;
+
     color: #434343;
     border-width: 0 0 2px 0;
     border-color: rgba(248,186,0,.5);
