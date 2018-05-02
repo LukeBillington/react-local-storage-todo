@@ -10,6 +10,13 @@ const initialState = {
   todos: [],
 };
 
+function updateTodo(array, action) {
+  return array.map((item, index) => {
+    if (index.toString() !== action.index) return item;
+    return action.todo;
+  });
+}
+
 function todos(state = initialState, action) {
   switch (action.type) {
     case TODOS_LOADING:
@@ -19,10 +26,7 @@ function todos(state = initialState, action) {
     case TODOS_CREATE:
       return Object.assign({}, state, { todos: [...state.todos, { text: '', checked: false }] });
     case TODOS_UPDATE:
-      return Object.assign({}, state.todos, state.todos.map((item, index) => {
-        if (index !== action.index) return item;
-        return action.todo;
-      }));
+      return Object.assign({}, state, { todos: updateTodo(state.todos, action) });
     default:
       return state;
   }

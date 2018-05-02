@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ButtonCheck from './ButtonCheck';
+import { connect } from 'react-redux';
+import { todosUpdate } from '../actions/todos';
+import ListItemCheck from './ListItemCheck';
+import ListItemText from './ListItemText';
 
-const ListItem = (props) => {
-  const { index, todo } = props;
-  return (
-    <li>
-      { index }
-      <ButtonCheck checked={todo.checked} />
-      <input type="text" value={todo.text} />
-    </li>
-  );
-};
+class ListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.handleUpdateText = this.handleUpdateText.bind(this);
+    this.handleUpdateCheck = this.handleUpdateCheck.bind(this);
+  }
+
+  handleUpdateText(event) {
+    const { index, todo } = this.props;
+    this.props.todosUpdate(index, Object.assign({}, todo, { text: event.target.value }));
+  }
+
+  handleUpdateCheck(event) {
+    const { index, todo } = this.props;
+    this.props.todosUpdate(index, Object.assign({}, todo, { checked: event.target.checked }));
+  }
+
+  render() {
+    const { index, todo } = this.props;
+    return (
+      <li>
+        { index }
+        <ListItemCheck checked={todo.checked} update={this.handleUpdateCheck} />
+        <ListItemText text={todo.text} update={this.handleUpdateText} />
+      </li>
+    );
+  }
+}
 
 ListItem.propTypes = {
-  index: PropTypes.number.isRequired,
-  todo: PropTypes.string.isRequired,
+  index: PropTypes.string.isRequired,
+  todo: PropTypes.shape({}).isRequired,
+  todosUpdate: PropTypes.func.isRequired,
 };
 
-export default ListItem;
+const mapDispatchToProps = dispatch => ({
+  todosUpdate: (index, todo) => dispatch(todosUpdate(index, todo)),
+});
+
+export default connect(null, mapDispatchToProps)(ListItem);
